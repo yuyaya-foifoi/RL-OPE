@@ -1,6 +1,6 @@
 SRC := src
 
 style:
-	pip install -r ./requirements/style.txt
-	isort $(SRC)
-	black $(SRC) --line-length 79
+	poetry run isort $(SRC)
+	poetry run black $(SRC) --line-length 79
+	poetry run flake8 $(SRC)

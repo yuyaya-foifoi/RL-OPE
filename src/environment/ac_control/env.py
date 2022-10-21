@@ -13,6 +13,9 @@ class ACControl(gym.Env):
         self.best_tmp = 25
         self.tmp = 5  # np.random.choice(self.STATE_NUM, 1).item()
 
+    def sigmoid(self, a):
+        return 1 / (1 + np.exp(-a))
+
     def reset(self):
         return self.tmp
 
@@ -22,7 +25,7 @@ class ACControl(gym.Env):
     def step(self, action_idx):
         change = self._calc_change(action_idx)
         self.tmp += change
-        return self.tmp, -np.abs(self.best_tmp - self.tmp)
+        return self.tmp, self.sigmoid(-np.abs(self.best_tmp - self.tmp)) / 0.5
 
     def render(self):
         pass
