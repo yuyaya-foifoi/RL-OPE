@@ -8,7 +8,10 @@ def calc_error(estimate_V: float, true_V: float, method="relative"):
 
 
 def _relative_estimation_error(estimate_V: float, true_V: float) -> float:
-    return (estimate_V - true_V) / true_V
+    """
+    絶対値で計算
+    """
+    return np.abs((estimate_V - true_V) / true_V)
 
 
 def _IPS(test_data: pd.DataFrame):
